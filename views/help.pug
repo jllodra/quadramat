@@ -1,0 +1,92 @@
+extends layout
+
+block content
+    #fonslegible.container-fluid.contenidor
+        #header.row
+            .col-lg-12.col-md-12.col-sm-12.col-xs-12
+                .pull-right
+                    a(href="/") Back
+        #titol.row
+            .col-lg-12.col-md-12.col-sm-12.col-xs-12
+                h2 Quadramat - A sonovisual synthesizer
+        #cos.row
+            .col-lg-12.col-md-12.col-sm-12.col-xs-12
+                h3 User Manual
+                hr
+                h4 Welcome
+                p Thanks for using Quadramat, a sono-visual synthesizer inspired in the analog laser consoles of the 70's.
+                p Quadramat consists of four quadrature oscillators (with sine and cosine components) that can modulate and be modulated by each other simultaneously, even creating complex feedback paths. The resulting audio is used to control the x and y position of a pointer that is moving according to the instant values of the adio signal being produced. So, what you see on the screen is a direct visualization showing the phase correlation between the left and right components of the sound your are hearing.
+
+                h4 How to create some sounds and images
+
+                ol(Type='a')
+
+                    li First of all, the "Init Preset" will be accessed and loaded by clicking over the selector at the beginning of the application page where you will see the “Select a preset...” caption. In the input box that will appear you can write “init” so that only the desired name is showing at the list. Then you will select it by clicking over its name. You can also scroll the list and select it directly.
+
+                    img(width='20%', src='../imgs/clip1.png')
+
+                    li After loading the selected preset you will hear a deep sound and a circle will be seen at the visualizer screen. The volume can be altered by changing its corresponding dial at the modulation matrix that can be found at the first row, and last-but-one column, corresponding to the “Master Out” modulation destination.
+
+                    img(width='20%', src='../imgs/clip2.png')
+
+                    li By using the rotary dials "oct", "semi" and "cents" the frequency of oscillator 1 can be selected and a change in the pitch will be perceived.
+
+                    img(width='20%', src='../imgs/clip3.png')
+
+                    li Select a low value for the "oct" dial and hear see how the displacement is so slow that the movement of the pointer can be followed. Now the pitch of the sound is so low that it can't be heard.
+
+                    li Select a higher value for the "oct" dial until a sound is heard again.
+
+                    li Change the waveform of the oscillator by using the drop-down menu named "Waveform". Every waveform has a different sound timbre and also its own visual representation. Finally, choose "square3" to get a square waveform with only its first three harmonics.
+
+                    img(width='20%', src='../imgs/clip5.png')
+
+                    li Change the value of the "order" dial and hear how the sound timbre changes as also does the corresponding visual representation. Choose a combination of the "order" dial and the "odd/even" switch that you find interesting.
+
+                    li In the modulation matrix change the values of the first two dials, beggining by the first one at the top-left. The first dial changes the frequency modulation amount from oscillator one towards oscillator 1 (ie, to itself), while the second dial does the same but with amplitude modulation. For now, leave these two values at minimum.
+
+                    li Change the "oct" value of oscillator 2 to its minimum.
+
+                    li At the modulation matrix, locate the dial at the second row and second column. This dial corresponds to the amplitude modulation going from oscillator 2 to oscillator 1 to the 3hours position. See how the figure at the screen changes on its own and hear the subtle timbre variation.
+
+                    img(width='20%', src='../imgs/clip7.png')
+
+                    li Further experimentation can be performed with the parameters from the other oscillators and their corresponding modulation matrix destinations.
+
+                    li Take into account that an oscillator must be sent to "Master Out" in order to be heard but it can still modulate the other oscillators. The volume of an oscillator affects the size of its corresponding figure while his timbre is related to the shape of the figure.
+
+                    li Finally, by using the dial of the "Reverb (post) column the desired amount of reverberation will be added to the sound. The reverberation effect simulates the presence of the sound source inside a big space, such as a church or concert hall. It can be better heard in sounds that change abruptly.
+
+                h4 How to use the presets system
+
+                p The presets can be changed just by clicking on the "Prev" and "Next" buttons at the top-side of the screen. They can also be selected directly from the selector-list, as has been already performed by following the former instructions.
+
+                p In order to store the state of the elements that create a sound the "Save" button can be used. But this action can only be performed by registered users. By clicking on the "Register" button you will be taken to the registration page where you can introduce your e-mail, user name and password. It is compulsory to enter a registration code that should be provided by the author of the application. After succesful registering you will be taken to the welcome page.
+
+                p Now, any button configuration can be stored as a preset by clicking on the "Save As..." button and stating a name for the preset. The preset will be then accessible by everyone using the application at the preset selector list.
+
+                p Own presets can be renamed by using the "Rename" button, modified and then stored without changing their name by using the "Save" button, modified and then stored with a different name by using the "Save As..." button, and deleted permanently by using the "Delete" button.
+
+                p Presets by other users can only be modified and/or saved under a different name by using the "Save As..." button. They will then appear on the list as presets of our own.
+
+                p Finally, you can exit the session if you wish so. Otherwise, the next time you use the app the session will be still open log-in will not be necessary. All sessions expire after four weeks.
+
+
+
+                h4 About the author
+
+                hr
+
+                p
+                    | Pere Amengual, also known as&nbsp
+                    a(href='http://pedrotrotz.com') Trotz
+                    | , is an electronic artist who recorded his first works of experimental electronic music in the mid-80s, in a style between industrial music and cut-up. He has studied, among others, the
+                    a(href='http://graumultimedia.com')  Degree in Multimedia
+                    |  at the Universitat Oberta de Catalunya, Audio and sound systems in the University of Valencia, Design of interactive spaces at the School of Machines (Berlin) and Max / Msp / Jitter with Yaciane Setbi and Julien Bayle. In the 90s he collaborated in the recording of some of the first achievements of the majorcan House scene and contributed to the promotion of electronic music as a member of collectives such as Tecnofamilia, Roñatrón and, later on, the Virus stamps / Antivirus. In his last works, he has mostly abandoned danceflooor beats in order to return to noisier and more experimental sound creation, incorporating to it elements of interaction and sono-visual art.
+
+
+
+                hr
+
+                a(href='/') Back
+    

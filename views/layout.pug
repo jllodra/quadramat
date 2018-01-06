@@ -1,0 +1,34 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    // per evitar que la pantalla faci scroll
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
+    title Quadramat - #{title} 
+    // fulls d'estils
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    link(href='https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css', rel='stylesheet')
+    link(href="https://fonts.googleapis.com/css?family=Open+Sans|Syncopate:400,700", rel="stylesheet")
+    link(rel='stylesheet', href='/stylesheets/estils.css')
+    // llibreries js
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js')
+    script(type='text/javascript', src='/javascripts/ui-master/dist/NexusUI.js')
+    script(type='text/javascript', src='/javascripts/Tone.js-master/build/Tone.js')
+    script(type='text/javascript', src='/javascripts/StartAudioContext.js')
+
+    script(type='text/javascript').
+      //window.onbeforeunload = function() {
+      // return "Your work will be lost.";
+      // };
+    // Això serveix per tenir al client (navegador) el mail de l'usuari que ha fet log in
+    // Així ho podem utilitzar per comparar amb l'autor del preset seleccionat quan faci falta  
+    - if(alreadyLoggedIn) {
+      script(type='text/javascript').  
+        window.sessionStorage.email = "#{session.email}";
+        window.sessionStorage.name = "#{session.name}";
+    - }  
+
+  body
+    block content

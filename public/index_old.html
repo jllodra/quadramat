@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>QuadraMat - Prototip final</title>
+
+    <!--    per evitar que la pantalla faci scroll-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <!--    fulls d'estils-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="stylesheets/estils.css">
+
+    <!--    llibreries js-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script type="text/javascript" src="javascripts/ui-master/dist/NexusUI.js"></script>
+    <script type="text/javascript" src="javascripts/Tone.js-master/build/Tone.js"></script>
+    <script type="text/javascript" src="javascripts/StartAudioContext.js"></script>
+    <script type="text/javascript">
+        /*window.onbeforeunload = function() {
+            return "Your work will be lost.";
+        };*/
+    </script>
+</head>
+
+<body>
+    <div class="container-fluid contenidor">
+        <!--    Fila títol-->
+        <div class="row" id="titol">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h2>Quadramat - Prototip final</h2>
+            </div>
+        </div>
+
+        <div class="row" id="barra">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <button class="btn btn-info" id="prev">Prev</button>
+                <button class="btn btn-info" id="next">Next</button>
+                <select id="presets2" name="state">
+                    <option value="" disabled selected>Loading presets...</option>
+                </select>
+                <button class="btn btn-danger" id="saveButton">Save</button>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-right">
+                <a href="/login.html" class="btn btn-default">Log in</a>
+                <a href="/register.html" class="btn btn-default">Register</a>
+            </div>
+        </div>
+
+        <div class="row">
+        <!--    Interfície gràfica de l'instrument-->
+            <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12" id="GUI">
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 bg-primary oscilador">
+
+                <p class="lead text-center">Oscillator 1</p>
+
+                <div class="row row-buttons">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <div id="osc1Oct" class="center-block text-center">oct</div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <div id="osc1Semi" class="center-block text-center">semi</div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <div id="osc1Cents" class="center-block text-center">cents</div>
+                    </div>
+                </div>
+
+                <div class="row row-waveform">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <div id="osc1Wave" class="center-block text-center">waveform</div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <div id="osc1XyType" class="center-block text-center">x/y/xy</div>
+                    </div>
+                </div>
+
+                <div class="row row-waveshaper">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <div id="osc1Order" class="center-block text-center">order</div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <div id="osc1Parity" class="center-block text-center">odd/even</div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <div id="osc1Index" class="center-block text-center">index</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 bg-primary oscilador">
+                <p class="lead text-center">Oscillator 2</p>
+                <div class="row row-buttons">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <div id="osc2Oct" class="center-block text-center">oct</div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <div id="osc2Semi" class="center-block text-center">semi</div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <div id="osc2Cents" class="center-block text-center">cents</div>
+                    </div>
+                </div>
+
+                <div class="row row-waveform">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <div id="osc2Wave" class="center-block text-center">waveform</div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <div id="osc2XyType" class="center-block text-center">x/y/xy</div>
+                    </div>
+                </div>
+
+                <div class="row row-waveshaper">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <div id="osc2Order" class="center-block text-center">order</div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <div id="osc2Parity" class="center-block text-center">odd/even</div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <div id="osc2Index" class="center-block text-center">index</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 bg-primary oscilador">
+                <p class="lead text-center">Oscillator 3</p>
+                <div class="row row-buttons">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <div id="osc3Oct" class="center-block text-center">oct</div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <div id="osc3Semi" class="center-block text-center">semi</div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <div id="osc3Cents" class="center-block text-center">cents</div>
+                    </div>
+                </div>
+
+                <div class="row row-waveform">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <div id="osc3Wave" class="center-block text-center">waveform</div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <div id="osc3XyType" class="center-block text-center">x/y/xy</div>
+                    </div>
+                </div>
+
+                <div class="row row-waveshaper">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <div id="osc3Order" class="center-block text-center">order</div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <div id="osc3Parity" class="center-block text-center">odd/even</div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <div id="osc3Index" class="center-block text-center">index</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 bg-primary oscilador">
+                <p class="lead text-center">Oscillator 4</p>
+                <div class="row row-buttons">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <div id="osc4Oct" class="center-block text-center">oct</div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <div id="osc4Semi" class="center-block text-center">semi</div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <div id="osc4Cents" class="center-block text-center">cents</div>
+                    </div>
+                </div>
+
+                <div class="row row-waveform">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <div id="osc4Wave" class="center-block text-center">waveform</div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <div id="osc4XyType" class="center-block text-center">x/y/xy</div>
+                    </div>
+                </div>
+
+                <div class="row row-waveshaper">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <div id="osc4Order" class="center-block text-center">order</div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <div id="osc4Parity" class="center-block text-center">odd/even</div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <div id="osc4Index" class="center-block text-center">index</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  matriu bg-primary">
+                <div class="table-responsive">
+                    <table class="table">
+                        <p class="lead text-center">matriu de modulació</p>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th class="text-center">Osc 1 Freq
+                                    <br><span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></th>
+                                <th class="text-center">Osc 1 Amp
+                                    <br><span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></th>
+                                <th class="text-center">Osc 2 Freq
+                                    <br><span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></th>
+                                <th class="text-center">Osc 2 Amp
+                                    <br><span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></th>
+                                <th class="text-center">Osc 3 Freq
+                                    <br><span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></th>
+                                <th class="text-center">Osc 3 Amp
+                                    <br><span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></th>
+                                <th class="text-center">Osc 4 Freq
+                                    <br><span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></th>
+                                <th class="text-center">Osc 4 Amp
+                                    <br><span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></th>
+                                <th class="text-center">Master Out
+                                    <br><span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></th>
+                                <th class="text-center">Reverb (post)
+                                    <br><span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th class="text-center">Osc 1<span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></th>
+                                <td>
+                                    <div id="osc1ToOsc1Freq" class="center-block"></div>
+                                </td>
+                                <td>
+                                    <div id="osc1ToOsc1Amp" class="center-block"></div>
+                                </td>
+                                <td>
+                                    <div id="osc1ToOsc2Freq" class="center-block"></div>
+                                </td>
+                                <td>
+                                    <div id="osc1ToOsc2Amp" class="center-block"></div>
+                                </td>
+                                <td>
+                                    <div id="osc1ToOsc3Freq" class="center-block"></div>
+                                </td>
+                                <td>
+                                    <div id="osc1ToOsc3Amp" class="center-block"></div>
+                                </td>
+                                <td>
+                                    <div id="osc1ToOsc4Freq" class="center-block"></div>
+                                </td>
+                                <td>
+                                    <div id="osc1ToOsc4Amp" class="center-block"></div>
+                                </td>
+                                <td>
+                                    <div id="osc1ToOut" class="center-block"></div>
+                                </td>
+                                <td>
+                                    <div id="osc1ToRev" class="center-block"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-center">Osc 2<span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></th>
+                                <td>
+                                    <div id="osc2ToOsc1Freq" class="center-block"></div>
+                                </td>
+                                <td>
+                                    <div id="osc2ToOsc1Amp" class="center-block"></div>
+                                </td>
+                                <td>
+                                    <div id="osc2ToOsc2Freq" class="center-block"></div>
+                                </td>
+                                <td>
+                                    <div id="osc2ToOsc2Amp" class="center-block"></div>
+                                </td>
+                                <td>
+                                    <div id="osc2ToOsc3Freq" class="center-block"></div>
+                                </td>
+                                <td>
+                                    <div id="osc2ToOsc3Amp" class="center-block"></div>
+                                </td>
+                                <td>
+                                    <div id="osc2ToOsc4Freq" class="center-block"></div>
+                                </td>
+                                <td>
+                                    <div id="osc2ToOsc4Amp" class="center-block"></div>
+                                </td>
+                                <td>
+                                    <div id="osc2ToOut" class="center-block"></div>
+                                </td>
+                                <td>
+                                    <div id="osc2ToRev" class="center-block"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-center">Osc 3<span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></th>
+                                <td>
+                                    <div id="osc3ToOsc1Freq" class="center-block"></div>
+                                </td>
+                                <td>
+                                    <div id="osc3ToOsc1Amp" class="center-block"></div>
+                                </td>
+                                <td>
+                                    <div id="osc3ToOsc2Freq" class="center-block"></div>
+                                </td>
+                                <td>
+                                    <div id="osc3ToOsc2Amp" class="center-block"></div>
+                                </td>
+                                <td>
+                                    <div id="osc3ToOsc3Freq" class="center-block"></div>
+                                </td>
+                                <td>
+                                    <div id="osc3ToOsc3Amp" class="center-block"></div>
+                                </td>
+                                <td>
+                                    <div id="osc3ToOsc4Freq" class="center-block"></div>
+                                </td>
+                                <td>
+                                    <div id="osc3ToOsc4Amp" class="center-block"></div>
+                                </td>
+                                <td>
+                                    <div id="osc3ToOut" class="center-block"></div>
+                                </td>
+                                <td>
+                                    <div id="osc3ToRev" class="center-block"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-center">Osc 4<span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></th>
+                                <td>
+                                    <div id="osc4ToOsc1Freq" class="center-block"></div>
+                                </td>
+                                <td>
+                                    <div id="osc4ToOsc1Amp" class="center-block"></div>
+                                </td>
+                                <td>
+                                    <div id="osc4ToOsc2Freq" class="center-block"></div>
+                                </td>
+                                <td>
+                                    <div id="osc4ToOsc2Amp" class="center-block"></div>
+                                </td>
+                                <td>
+                                    <div id="osc4ToOsc3Freq" class="center-block"></div>
+                                </td>
+                                <td>
+                                    <div id="osc4ToOsc3Amp" class="center-block"></div>
+                                </td>
+                                <td>
+                                    <div id="osc4ToOsc4Freq" class="center-block"></div>
+                                </td>
+                                <td>
+                                    <div id="osc4ToOsc4Amp" class="center-block"></div>
+                                </td>
+                                <td>
+                                    <div id="osc4ToOut" class="center-block"></div>
+                                </td>
+                                <td>
+                                    <div id="osc4ToRev" class="center-block"></div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+        <!--    Visualitzador de corbes Lissajous-->
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 " id="contenidorvisuals">
+                <canvas id="visuals" class="center-block"></canvas>
+            </div>
+        </div>
+
+     </div>
+</body>
+
+<!-- modul principal de l'aplicació-->
+<script type="text/javascript" src="javascripts/lib/qm.js"></script>
+
+<!-- modul motor d'àudio-->
+<script type="text/javascript" src="javascripts/lib/qm.engine.js"></script>
+
+<!-- modul interfície d'usuari-->
+<script type="text/javascript" src="javascripts/lib/qm.ui.js"></script>
+
+<!-- modul de gestió de presets-->
+<script type="text/javascript" src="javascripts/lib/qm.preset.js"></script>
+
+<!-- modul de visualització -->
+<script type="text/javascript" src="javascripts/lib/qm.vis.js"></script>
+
+<script>
+    qm.init();
+</script>
+
+</html>

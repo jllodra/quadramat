@@ -1,0 +1,56 @@
+{
+  "id": 1,
+  "nom": "Preset1",
+  "rating": 0,
+  "autor": {
+    "nom": "Pere",
+    "email": "pereamengual@gmail.com"
+  },
+  "categoria": "techno",
+  "osc1": {
+    "oct": 0,
+    "semi": 0,
+    "cents": 0,
+    "wave": "sine",
+    "xy": "xy",
+    "order": 0,
+    "even": true,
+    "index": 0
+  },
+  "osc2": {
+    "oct": 0,
+    "semi": 0,
+    "cents": 0,
+    "wave": "sine",
+    "xy": "xy",
+    "order": 0,
+    "even": true,
+    "index": 0
+  },
+  "osc3": {
+    "oct": 0,
+    "semi": 0,
+    "cents": 0,
+    "wave": "sine",
+    "xy": "xy",
+    "order": 0,
+    "even": true,
+    "index": 0
+  },
+  "osc4": {
+    "oct": 0,
+    "semi": 0,
+    "cents": 0,
+    "wave": "sine",
+    "xy": "xy",
+    "order": 0,
+    "even": true,
+    "index": 0
+  },
+  "modmatrix": {
+    "osc1dest": [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+    "osc2dest": [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+    "osc3dest": [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+    "osc4dest": [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+  }
+}

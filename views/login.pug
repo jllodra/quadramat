@@ -1,0 +1,29 @@
+extends layout
+
+block content
+    .container-fluid.contenidor
+        #header.row
+            .col-lg-12.col-md-12.col-sm-12.col-xs-12
+                .pull-right
+                    a(href="/") Back
+        #titol.row
+            .col-lg-12.col-md-12.col-sm-12.col-xs-12
+                h2 Quadramat - A sonovisual synthesizer
+        #cos.row
+            .col-xs-8.col-md-3
+                h3 Log in
+                hr
+                - if(alreadyLoggedIn)
+                    form(action='/login/logout', method='POST')
+                        input.btn.btn-default(type='submit', value='Logout')
+                - else
+                    - if(error)
+                        p.well.well-sm.alert-danger L'usuari o el password són erronis.
+                    form(action='/login/check', method='POST')
+                        .form-group
+                            label(for='email') E-mail:
+                            input.form-control(type='email', name='email', id='email', required='', placeholder='Your e-mail')
+                        .form-group    
+                            label(for='password') Password:
+                            input.form-control(type='password', name='password', id='password', required='', , placeholder='******')
+                        input.btn.btn-primary(type='submit', value='Submit')

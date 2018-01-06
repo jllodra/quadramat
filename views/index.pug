@@ -1,0 +1,297 @@
+extends layout
+
+block content
+  .container-fluid.contenidor
+    // Fila títol
+    #header.row
+      .col-lg-12.col-md-12.col-sm-12.col-xs-12
+        .pull-right
+          a(href="/help") Help
+    #titol.row
+      .col-lg-12.col-md-12.col-sm-12.col-xs-12
+        h2 Quadramat - A sonovisual synthesizer
+    #barra.row
+      .col-lg-8.col-md-8.col-sm-8.col-xs-8
+        button#prev.btn.btn-info
+          span.glyphicon.glyphicon-backward
+          | &nbsp;&nbsp;Prev
+        button#next.btn.btn-info
+          | Next&nbsp;&nbsp;
+          span.glyphicon.glyphicon-forward
+        select#presets2(style='visibility: hidden')
+          option(value='', disabled='', selected='') Loading presets...
+        - if(alreadyLoggedIn)
+          button#saveButton.btn.btn-info(style='display: none;')
+            span.glyphicon.glyphicon-floppy-disk
+            | &nbsp;&nbsp;Save...
+          button#saveAsButton.btn.btn-info
+            span.glyphicon.glyphicon-floppy-save
+            | &nbsp;&nbsp;Save As...
+          button#renameButton.btn.btn-info(style='display: none;')
+            span.glyphicon.glyphicon-pencil
+            | &nbsp;&nbsp;Rename
+          button#deleteButton.btn.btn-danger(style='display: none;')
+            span.glyphicon.glyphicon-trash
+            | &nbsp;&nbsp;Delete
+      .col-lg-4.col-md-4.col-sm-4.col-xs-4.text-right
+        - if(alreadyLoggedIn)
+          span.text-white Hello <strong>#{session.name}</strong>!
+          a.btn.btn-primary(href='/login/logout')
+            span.glyphicon.glyphicon-log-out
+            | &nbsp;&nbsp;Log out
+        - else
+          a.btn.btn-success(href='/login')
+            span.glyphicon.glyphicon-log-in
+            | &nbsp;&nbsp;Log in
+          a.btn.btn-primary(href='/register')
+            span.glyphicon.glyphicon-user
+            | &nbsp;&nbsp;Register
+    .row
+      // Interfície gràfica de l'instrument
+      #GUI.col-lg-8.col-md-12.col-sm-12.col-xs-12
+        .col-lg-7.no-padding
+          .col-lg-6.col-md-3.col-sm-6.col-xs-12.bg-primary.oscilador
+            p.lead.text-center Oscillator 1
+            .row.row-buttons
+              .col-lg-4.col-md-4.col-sm-4.col-xs-4
+                #osc1Oct.center-block.text-center.middleButton oct
+              .col-lg-4.col-md-4.col-sm-4.col-xs-4
+                #osc1Semi.center-block.text-center.middleButton semi
+              .col-lg-4.col-md-4.col-sm-4.col-xs-4
+                #osc1Cents.center-block.text-center.middleButton cents
+            .row.row-waveform
+              .col-lg-6.col-md-6.col-sm-6.col-xs-6
+                #osc1Wave.center-block.text-center.middleButton waveform
+              .col-lg-6.col-md-6.col-sm-6.col-xs-6
+                #osc1XyType.center-block.text-center.middleButton x/y/xy
+            .row.row-waveshaper
+              .col-lg-4.col-md-4.col-sm-4.col-xs-4
+                #osc1Order.center-block.text-center.middleButton order
+              .col-lg-4.col-md-4.col-sm-4.col-xs-4
+                #osc1Parity.center-block.text-center.middleButton odd/even
+              .col-lg-4.col-md-4.col-sm-4.col-xs-4
+                #osc1Index.center-block.text-center.middleButton index
+          .col-lg-6.col-md-3.col-sm-6.col-xs-12.bg-primary.oscilador
+            p.lead.text-center Oscillator 2
+            .row.row-buttons
+              .col-lg-4.col-md-4.col-sm-4.col-xs-4
+                #osc2Oct.center-block.text-center.middleButton oct
+              .col-lg-4.col-md-4.col-sm-4.col-xs-4
+                #osc2Semi.center-block.text-center.middleButton semi
+              .col-lg-4.col-md-4.col-sm-4.col-xs-4
+                #osc2Cents.center-block.text-center.middleButton cents
+            .row.row-waveform
+              .col-lg-6.col-md-6.col-sm-6.col-xs-6
+                #osc2Wave.center-block.text-center.middleButton waveform
+              .col-lg-6.col-md-6.col-sm-6.col-xs-6
+                #osc2XyType.center-block.text-center.middleButton x/y/xy
+            .row.row-waveshaper
+              .col-lg-4.col-md-4.col-sm-4.col-xs-4
+                #osc2Order.center-block.text-center.middleButton order
+              .col-lg-4.col-md-4.col-sm-4.col-xs-4
+                #osc2Parity.center-block.text-center.middleButton odd/even
+              .col-lg-4.col-md-4.col-sm-4.col-xs-4
+                #osc2Index.center-block.text-center.middleButton index
+          .col-lg-6.col-md-3.col-sm-6.col-xs-12.bg-primary.oscilador
+            p.lead.text-center Oscillator 3
+            .row.row-buttons
+              .col-lg-4.col-md-4.col-sm-4.col-xs-4
+                #osc3Oct.center-block.text-center.middleButton oct
+              .col-lg-4.col-md-4.col-sm-4.col-xs-4
+                #osc3Semi.center-block.text-center.middleButton semi
+              .col-lg-4.col-md-4.col-sm-4.col-xs-4
+                #osc3Cents.center-block.text-center.middleButton cents
+            .row.row-waveform
+              .col-lg-6.col-md-6.col-sm-6.col-xs-6
+                #osc3Wave.center-block.text-center.middleButton waveform
+              .col-lg-6.col-md-6.col-sm-6.col-xs-6
+                #osc3XyType.center-block.text-center.middleButton x/y/xy
+            .row.row-waveshaper
+              .col-lg-4.col-md-4.col-sm-4.col-xs-4
+                #osc3Order.center-block.text-center.middleButton order
+              .col-lg-4.col-md-4.col-sm-4.col-xs-4
+                #osc3Parity.center-block.text-center.middleButton odd/even
+              .col-lg-4.col-md-4.col-sm-4.col-xs-4
+                #osc3Index.center-block.text-center.middleButton index
+          .col-lg-6.col-md-3.col-sm-6.col-xs-12.bg-primary.oscilador
+            p.lead.text-center Oscillator 4
+            .row.row-buttons
+              .col-lg-4.col-md-4.col-sm-4.col-xs-4
+                #osc4Oct.center-block.text-center.middleButton oct
+              .col-lg-4.col-md-4.col-sm-4.col-xs-4
+                #osc4Semi.center-block.text-center.middleButton semi
+              .col-lg-4.col-md-4.col-sm-4.col-xs-4
+                #osc4Cents.center-block.text-center.middleButton cents
+            .row.row-waveform
+              .col-lg-6.col-md-6.col-sm-6.col-xs-6
+                #osc4Wave.center-block.text-center.middleButton waveform
+              .col-lg-6.col-md-6.col-sm-6.col-xs-6
+                #osc4XyType.center-block.text-center.middleButton x/y/xy
+            .row.row-waveshaper
+              .col-lg-4.col-md-4.col-sm-4.col-xs-4
+                #osc4Order.center-block.text-center.middleButton order
+              .col-lg-4.col-md-4.col-sm-4.col-xs-4
+                #osc4Parity.center-block.text-center.middleButton odd/even
+              .col-lg-4.col-md-4.col-sm-4.col-xs-4
+                #osc4Index.center-block.text-center.middleButton index
+        .col-lg-5.no-padding
+          .col-lg-12.col-md-12.col-sm-12.col-xs-12.matriu.bg-primary
+            .table-responsive
+              table.table
+                p.lead.text-center Modulation Matrix
+                thead
+                  tr
+                    th
+                    th.text-center
+                      | Osc 1
+                      br
+                      span.glyphicon.glyphicon-triangle-bottom(aria-hidden='true')
+                    th.text-center
+                      | Osc 2
+                      br
+                      span.glyphicon.glyphicon-triangle-bottom(aria-hidden='true')
+                    th.text-center
+                      | Osc 3
+                      br
+                      span.glyphicon.glyphicon-triangle-bottom(aria-hidden='true')
+                    th.text-center
+                      | Osc 4
+                      br
+                      span.glyphicon.glyphicon-triangle-bottom(aria-hidden='true')
+                tbody
+                  tr
+                    th.text-center
+                      | Osc 1 Freq
+                      span.glyphicon.glyphicon-triangle-left(aria-hidden='true')
+                    td
+                      #osc1ToOsc1Freq.center-block
+                    td
+                      #osc2ToOsc1Freq.center-block
+                    td
+                      #osc3ToOsc1Freq.center-block
+                    td
+                      #osc4ToOsc1Freq.center-block
+                  tr
+                    th.text-center
+                      | Osc 1 Amp
+                      span.glyphicon.glyphicon-triangle-left(aria-hidden='true')
+                    td
+                      #osc1ToOsc1Amp.center-block
+                    td
+                      #osc2ToOsc1Amp.center-block
+                    td
+                      #osc3ToOsc1Amp.center-block
+                    td
+                      #osc4ToOsc1Amp.center-block
+                  tr
+                    th.text-center
+                      | Osc 2 Freq
+                      span.glyphicon.glyphicon-triangle-left(aria-hidden='true')
+                    td
+                      #osc1ToOsc2Freq.center-block
+                    td
+                      #osc2ToOsc2Freq.center-block
+                    td
+                      #osc3ToOsc2Freq.center-block
+                    td
+                      #osc4ToOsc2Freq.center-block
+                  tr
+                    th.text-center
+                      | Osc 2 Amp
+                      span.glyphicon.glyphicon-triangle-left(aria-hidden='true')
+                    td
+                      #osc1ToOsc2Amp.center-block
+                    td
+                      #osc2ToOsc2Amp.center-block
+                    td
+                      #osc3ToOsc2Amp.center-block
+                    td
+                      #osc4ToOsc2Amp.center-block
+                  tr
+                    th.text-center
+                      | Osc 3 Freq
+                      span.glyphicon.glyphicon-triangle-left(aria-hidden='true')
+                    td
+                      #osc1ToOsc3Freq.center-block
+                    td
+                      #osc2ToOsc3Freq.center-block
+                    td
+                      #osc3ToOsc3Freq.center-block
+                    td
+                      #osc4ToOsc3Freq.center-block
+                  tr
+                    th.text-center
+                      | Osc 3 Amp
+                      span.glyphicon.glyphicon-triangle-left(aria-hidden='true')
+                    td
+                      #osc1ToOsc3Amp.center-block
+                    td
+                      #osc2ToOsc3Amp.center-block
+                    td
+                      #osc3ToOsc3Amp.center-block
+                    td
+                      #osc4ToOsc3Amp.center-block
+                  tr
+                    th.text-center
+                      | Osc 4 Freq
+                      span.glyphicon.glyphicon-triangle-left(aria-hidden='true')
+                    td
+                      #osc1ToOsc4Freq.center-block
+                    td
+                      #osc2ToOsc4Freq.center-block
+                    td
+                      #osc3ToOsc4Freq.center-block
+                    td
+                      #osc4ToOsc4Freq.center-block
+                  tr
+                    th.text-center
+                      | Osc 4 Amp
+                      span.glyphicon.glyphicon-triangle-left(aria-hidden='true')
+                    td
+                      #osc1ToOsc4Amp.center-block
+                    td
+                      #osc2ToOsc4Amp.center-block
+                    td
+                      #osc3ToOsc4Amp.center-block
+                    td
+                      #osc4ToOsc4Amp.center-block
+                  tr
+                    th.text-center
+                      | Master Out
+                      span.glyphicon.glyphicon-triangle-left(aria-hidden='true')
+                    td
+                      #osc1ToOut.center-block
+                    td
+                      #osc2ToOut.center-block
+                    td
+                      #osc3ToOut.center-block
+                    td
+                      #osc4ToOut.center-block
+                  tr
+                    th.text-center
+                      | Reverb (post)
+                      span.glyphicon.glyphicon-triangle-left(aria-hidden='true')
+                    td
+                      #osc1ToRev.center-block
+                    td
+                      #osc2ToRev.center-block
+                    td
+                      #osc3ToRev.center-block
+                    td
+                      #osc4ToRev.center-block
+      // Visualitzador de corbes Lissajous
+      #contenidorvisuals.col-lg-4.col-md-12.col-sm-12.col-xs-12.no-padding
+        canvas#visuals.center-block
+  // modul principal de l'aplicació
+  script(type='text/javascript', src='javascripts/lib/qm.js')
+  // modul motor d'àudio
+  script(type='text/javascript', src='javascripts/lib/qm.engine.js')
+  // modul interfície d'usuari
+  script(type='text/javascript', src='javascripts/lib/qm.ui.js')
+  // modul de gestió de presets
+  script(type='text/javascript', src='javascripts/lib/qm.preset.js')
+  // modul de visualització
+  script(type='text/javascript', src='javascripts/lib/qm.vis.js')
+  script.
+      qm.init();
+
